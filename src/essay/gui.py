@@ -1,5 +1,5 @@
 import os
-from typing import Generator
+from typing import Generator, Union
 
 import gradio as gr
 from langgraph.graph import StateGraph
@@ -76,7 +76,7 @@ class EssayGui:
 
         return lnode, nnode, self.thread_id, rev, acount
 
-    def get_state(self, key: str) -> gr.update | str:
+    def get_state(self, key: str) -> Union[gr.update, str]:
         """ "Get the state of the agent for a specific key.
         Args:
             key (str): The key to get the state for.
@@ -92,7 +92,7 @@ class EssayGui:
 
     def get_content(
         self,
-    ) -> gr.update | str:
+    ) -> Union[gr.update, str]:
         """Get the content from the current state of the agent."""
         current_values = self.graph.get_state(self.thread)
         if "content" in current_values.values:
@@ -255,7 +255,10 @@ class EssayGui:
 
             with gr.Tab("Agent"):
                 with gr.Row():
-                    topic_bx = gr.Textbox(label="Essay Topic", value="Pizza Shop")
+                    topic_bx = gr.Textbox(
+                        label="Essay Topic",
+                        value="is global warming the greatest threat to humans",
+                    )
                     gen_btn = gr.Button(
                         "Generate Essay", scale=0, min_width=80, variant="primary"
                     )
