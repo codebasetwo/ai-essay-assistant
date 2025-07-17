@@ -1,0 +1,18 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+.env
+# Ruff cache
+.ruff_cache/
+# Gradio cache
+.gradio_cache/ 
+.gradio/
+# notebook cache
+*.ipynb_checkpoints/
